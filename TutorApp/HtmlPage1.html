@@ -1,13 +1,70 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>Tutor up</title>
+	<meta charset="utf-8" />
+	<title>Tutor up</title>
+	<link rel="stylesheet" type="text/css" href="Stylesheet_TutoringProject.css">
 </head>
 <body>
-    <h1>
-        Test
-    </h1>
+	<header>
+		<div class="headerImage">
+			<form action="" class="headerForm">
+				<h1>Login</h1>
+
+				<label for="email"><b>Email</b></label>
+				<input type="text" placeholder="Enter Email" name="email" required>
+
+				<label for="psw"><b>Password</b></label>
+				<input type="password" placeholder="Enter Password" name="psw" required>
+
+				<button type="submit" class="btn">Login</button>
+			</form>
+		</div>
+	</header>
+
+	<main>
+		<button class="tablink" onclick="openPage('Home', this, '#0000ff')" id="defaultOpen">Home</button>
+		<button class="tablink" onclick="openPage('Find', this, '#0092ed')">Find a Tutor</button>
+		<button class="tablink" onclick="openPage('Apply', this, '#008418')">Become a Tutor</button>
+
+		<div id="Home" class="tabcontent">
+			<h3>Tutor Up!</h3>
+		</div>
+
+		<div id="Find" class="tabcontent">
+			<h3>Hey, we got some tutors here!</h3>
+		</div>
+
+		<div id="Apply" class="tabcontent">
+			<h3>Teach some kiddos.</h3>
+		</div>
+	</main>
+
+	<script>
+		function openPage(pageName, elmnt, color) {
+  			// Hide all elements with class="tabcontent" by default */
+  			var i, tabcontent, tablinks;
+  			tabcontent = document.getElementsByClassName("tabcontent");
+  			for (i = 0; i < tabcontent.length; i++) {
+    			tabcontent[i].style.display = "none";
+  			}
+
+  			// Remove the background color of all tablinks/buttons
+  			tablinks = document.getElementsByClassName("tablink");
+  			for (i = 0; i < tablinks.length; i++) {
+    			tablinks[i].style.backgroundColor = "";
+  			}
+
+  			// Show the specific tab content
+  			document.getElementById(pageName).style.display = "block";
+
+  			// Add the specific color to the button used to open the tab content
+  			elmnt.style.backgroundColor = color;
+		}
+
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+	</script>
 
 </body>
 </html>

@@ -52,7 +52,7 @@ namespace TutorApp
 
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
 
-            string sqlSelect = "SELECT id FROM a"
+            string sqlSelect = "SELECT id FROM a";
             return success;
         }
     }

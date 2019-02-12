@@ -1,0 +1,101 @@
+﻿/* HEADER STYLING --------------------------------------*/
+body {
+	height: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0% 15% 0% 15%
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.headerImage {
+	/* The image used */
+	background-image: url("HeaderImage.jfif");
+	min-height: 400px;
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+/* Add styles to the form container */
+.headerForm {
+	position: absolute;
+	right: 0;
+	margin: 20px;
+	max-width: 300px;
+	padding: 16px;
+	background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	border: none;
+	background: #f1f1f1;
+}
+
+	input[type=text]:focus, input[type=password]:focus {
+		background-color: #ddd;
+		outline: none;
+	}
+
+/* Set a style for the submit button */
+.btn {
+	background-color: #0000ff;
+	color: white;
+	padding: 16px 20px;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	opacity: 0.9;
+}
+
+	.btn:hover {
+		opacity: 1;
+	}
+/*-------------------------------------------------------*/
+
+/* MAIN STYLING -----------------------------------------*/
+/* Style tab links */
+.tablink {
+	background-color: #555;
+	color: white;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	font-size: 17px;
+	width: 25%;
+}
+
+	.tablink:hover {
+		background-color: #777;
+	}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+	color: white;
+	display: none;
+	padding: 100px 20px;
+	height: 100%;
+}
+
+#Home {
+	background-color: #0000ff;
+}
+
+#Find {
+	background-color: #0092ed;
+}
+
+#Apply {
+	background-color: #008418;
+}
+/*--------------------------------------------------------*/
+
