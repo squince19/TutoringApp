@@ -44,5 +44,16 @@ namespace TutorApp
             //return number of rows we have, thats how many are in the system.
             return sqlDt.Rows.Count;
         }
+
+        [WebMethod]
+        public bool LogOn(string uid, string pass)
+        {
+            bool success = false;
+
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
+
+            string sqlSelect = "SELECT id FROM a"
+            return success;
+        }
     }
 }
