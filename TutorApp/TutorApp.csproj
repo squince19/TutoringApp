@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="WebService.asmx" />
   </ItemGroup>
