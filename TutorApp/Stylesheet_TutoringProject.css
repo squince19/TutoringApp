@@ -39,10 +39,10 @@ input[type=text], input[type=password] {
 	background: #f1f1f1;
 }
 
-	input[type=text]:focus, input[type=password]:focus {
-		background-color: #ddd;
-		outline: none;
-	}
+input[type=text]:focus, input[type=password]:focus {
+	background-color: #ddd;
+	outline: none;
+}
 
 /* Set a style for the submit button */
 .btn {
@@ -55,9 +55,9 @@ input[type=text], input[type=password] {
 	opacity: 0.9;
 }
 
-	.btn:hover {
-		opacity: 1;
-	}
+.btn:hover {
+	opacity: 1;
+}
 /*-------------------------------------------------------*/
 
 /* MAIN STYLING -----------------------------------------*/
@@ -74,9 +74,9 @@ input[type=text], input[type=password] {
 	width: 25%;
 }
 
-	.tablink:hover {
-		background-color: #777;
-	}
+.tablink:hover {
+	background-color: #777;
+}
 
 /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
