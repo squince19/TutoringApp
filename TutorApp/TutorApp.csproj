@@ -81,6 +81,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="JavaScript.js" />
     <Content Include="Stylesheet_TutoringProject.css" />
     <Content Include="Web.config" />
     <Content Include="WebService.asmx" />
