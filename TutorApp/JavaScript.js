@@ -5,7 +5,8 @@
     //note we encode the values for transmission over the web.  All the \'s are just
     //because we want to wrap our keynames and values in double quotes so we have to
     //escape the double quotes (because the overall string we're creating is in double quotes!)
-    var parameters = "{\"uid\":\"" + encodeURI(userId) + "\",\"pass\":\"" + encodeURI(pass) + "\"}";
+    //SQ: This is the line of code Im having trouble with
+    var parameters = "{\"userName\":\"" + encodeURI(userId) + "\",\"userPassword\":\"" + encodeURI(pass) + "\"}";
 
     //jQuery ajax method
     $.ajax({
@@ -27,16 +28,7 @@
             //since our logon web method simply returns a true/false, that value is mapped
             //to a generic property of the server response called d (I assume short for data
             //but honestly I don't know...)
-            if (msg.d) {
-                //server replied true, so show the accounts panel
-                showPanel('accountsPanel');
-                LoadAccounts();
-            }
-            else {
-                //server replied false, so let the user know
-                //the logon failed
-                alert("logon failed");
-            }
+            alert("you are logged in!");
         },
         error: function (e) {
             //if something goes wrong in the mechanics of delivering the
