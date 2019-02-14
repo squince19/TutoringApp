@@ -1,15 +1,16 @@
-﻿function LogOn(userId, pass) {
+﻿function LogOn(userName, userPassword) {
     //the url of the webservice we will be talking to
-    var webMethod = "AccountServices.asmx/LogOn";
+    var webMethod = "WebService.asmx/LogOn";
     //the parameters we will pass the service (in json format because curly braces)
     //note we encode the values for transmission over the web.  All the \'s are just
     //because we want to wrap our keynames and values in double quotes so we have to
     //escape the double quotes (because the overall string we're creating is in double quotes!)
     //SQ: This is the line of code Im having trouble with
-    var parameters = "{\"userName\":\"" + encodeURI(userId) + "\",\"userPassword\":\"" + encodeURI(pass) + "\"}";
-
+    var parameters = "{\"userName\":\"" + encodeURI(userName) + "\",\"userPassword\":\"" + encodeURI(userPassword) + "\"}";
+    //alert('here');
     //jQuery ajax method
     $.ajax({
+
         //post is more secure than get, and allows
         //us to send big data if we want.  really just
         //depends on the way the service you're talking to is set up, though
