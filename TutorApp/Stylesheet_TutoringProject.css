@@ -19,6 +19,8 @@ body {
 	background-size: cover;
 	position: relative;
     opacity: .8;
+    width: 100%;
+
 }
 
 /* Add styles to the form container */
@@ -87,15 +89,15 @@ input[type=text]:focus, input[type=password]:focus {
 	height: 100%;
 }
 
-#Home {
+#AboutUs {
 	background-color: #0000ff;
 }
 
-#Find {
+#Contact {
 	background-color: #0092ed;
 }
 
-#Apply {
+#Privacy {
     background-color: #88D2F2;
 }
 /*--------------------------------------------------------*/

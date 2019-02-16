@@ -4,6 +4,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="JavaScript.js"></script>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutor up</title>
     <link rel="stylesheet" type="text/css" href="Stylesheet_TutoringProject.css">
 </head>
@@ -12,7 +13,7 @@
         <div class="headerImage">
             <div class="logo"></div>
 
-            <input type="text" placeholder="Search a Topic..." name="search" class="search" style="width: 50%; float: left; margin-top: 20%; margin-left: 5%; outline-color: #ffffff;">
+            <!--<input type="text" placeholder="Search a Topic..." name="search" class="search" style="width: 50%; float: left; margin-top: 20%; margin-left: 5%; outline-color: #ffffff;">-->
             <form action="" class="headerForm" style="float: right;" onsubmit="LogOn($('#logonID').val(), $('#logonPassword').val()); return false;">
                 <h1>Login</h1>
                 <label for="userName"><b>User Name</b></label>
@@ -22,25 +23,27 @@
                 <input type="password" id="logonPassword" placeholder="Enter Password" name="psw" required>
 
                 <button type="submit" class="btn">Login</button>
+                <button type="submit" class="btn">Create Account</button>
+
             </form>
         </div>
     </header>   
 
     <main>
-        <button class="tablink" onclick="openPage('Home', this, '#0000ff')" id="defaultOpen">Home</button>
-        <button class="tablink" onclick="openPage('Find', this, '#0092ed')">Find a Tutor</button>
-        <button class="tablink" onclick="openPage('Apply', this, '#88D2F2')">Become a Tutor</button>
+        <button class="tablink" onclick="openPage('AboutUs', this, '#0000ff')" id="defaultOpen">About Us</button>
+        <button class="tablink" onclick="openPage('Contact', this, '#0092ed')">Contact Us</button>
+        <button class="tablink" onclick="openPage('Privacy', this, '#88D2F2')">Privacy Notice</button>
 
-        <div id="Home" class="tabcontent">
-            <h3>Tutor Up!</h3>
+        <div id="AboutUs" class="tabcontent">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
 
-        <div id="Find" class="tabcontent">
-            <h3>Hey, we got some tutors here!</h3>
+        <div id="Contact" class="tabcontent">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
 
-        <div id="Apply" class="tabcontent">
-            <h3>Teach some kiddos.</h3>
+        <div id="Privacy" class="tabcontent">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
     </main>
     <script src="JavaScript.js"></script>
