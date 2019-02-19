@@ -84,7 +84,7 @@ namespace TutorApp
                 //are 1) logged in at all, and 2) and admin or not
                 
                 
-                Session["id"] = sqlDt.Rows[0]["id"];
+                //Session["id"] = sqlDt.Rows[0]["id"];
                 //Session["admin"] = sqlDt.Rows[0]["admin"];
                 success = true;
             }
@@ -114,16 +114,19 @@ namespace TutorApp
             //here we go filling it!
             sqlDa.Fill(sqlDt);
 
-            string firstname = (string)sqlDt.Rows[0]["firstName"];
-            int userID = (int)sqlDt.Rows[0]["userID"];
-            string lastname = (string)sqlDt.Rows[0]["lastName"];
-            string userEmail = (string)sqlDt.Rows[0]["userEmail"];
-            string userType = (string)sqlDt.Rows[0]["userType"];
-            string phoneNo = (string)sqlDt.Rows[0]["phoneNumber"];
+            //if (sqlDt.Rows[0] != null)
+            //{
+                string firstname = (string)sqlDt.Rows[0]["firstName"];
+                int userID = (int)sqlDt.Rows[0]["userID"];
+                string lastname = (string)sqlDt.Rows[0]["lastName"];
+                string userEmail = (string)sqlDt.Rows[0]["userEmail"];
+                string userType = (string)sqlDt.Rows[0]["userType"];
+                string phoneNo = (string)sqlDt.Rows[0]["phoneNumber"];
 
-            thisAccount = new Account(userID, userName, firstname, lastname, userEmail, phoneNo, userType);
+                thisAccount = new Account(userID, userName, firstname, lastname, userEmail, phoneNo, userType);
 
-            return thisAccount;
+                return thisAccount;
+            //}
         }
 
 
