@@ -133,15 +133,48 @@ namespace TutorApp
 
         //SQ: WEB METHOD NOT DONE. Just got it started
         [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
-        public List<Account> FindTutor(string courseName)
+        public List<Account> FindTutor(string courseLetter, string courseCode)
         {
+            string courseName = courseLetter + courseCode;
+
             List<Account> relAccount;
 
-            relAccount = new List<Account>;
+            relAccount = new List<Account>();
+
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
+            string sqlSelect = "SELECT userID, firstName, lastName, phoneNumber, userEmail FROM users WHERE userType=tutor and courseProf=@courseValue"; //finish this with course type;
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@courseValue", HttpUtility.UrlDecode(courseName));
+
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            DataTable dataTable = new DataTable();
+            sqlDa.Fill(dataTable);
+
+            List<Account> tempList = new List<Account>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                int idValue = Convert.ToInt32(row["userID"]);
+                Account tempAcc = new Account(
+                    idValue,
+                    row["firstName"].ToString(),
+                    row["lastName"].ToString(),
+                    row["phoneNumber"].ToString(),
+                    row["email"].ToString()
+                    );
+
+                tempList.Add(tempAcc);
+            }
+
+            int i = tempList.Count;
+
+            Random r = new Random();
+            //METHOD NOT FINISHED, WILL WORK ON THIS AFTER WORK (10PM)
+            
 
             return relAccount;
         }
-
-        
     }
 }
+
