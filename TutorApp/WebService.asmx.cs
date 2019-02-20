@@ -84,8 +84,8 @@ namespace TutorApp
                 //if we found an account, store the id and admin status in the session
                 //so we can check those values later on other method calls to see if they 
                 //are 1) logged in at all, and 2) and admin or not
-                
-                
+
+
                 //Session["id"] = sqlDt.Rows[0]["id"];
                 //Session["admin"] = sqlDt.Rows[0]["admin"];
                 success = true;
@@ -118,19 +118,30 @@ namespace TutorApp
 
             //if (sqlDt.Rows[0] != null)
             //{
-                string firstname = (string)sqlDt.Rows[0]["firstName"];
-                int userID = (int)sqlDt.Rows[0]["userID"];
-                string lastname = (string)sqlDt.Rows[0]["lastName"];
-                string userEmail = (string)sqlDt.Rows[0]["userEmail"];
-                string userType = (string)sqlDt.Rows[0]["userType"];
-                string phoneNo = (string)sqlDt.Rows[0]["phoneNumber"];
+            string firstname = (string)sqlDt.Rows[0]["firstName"];
+            int userID = (int)sqlDt.Rows[0]["userID"];
+            string lastname = (string)sqlDt.Rows[0]["lastName"];
+            string userEmail = (string)sqlDt.Rows[0]["userEmail"];
+            string userType = (string)sqlDt.Rows[0]["userType"];
+            string phoneNo = (string)sqlDt.Rows[0]["phoneNumber"];
 
-                thisAccount = new Account(userID, userName, firstname, lastname, userEmail, phoneNo, userType);
+            thisAccount = new Account(userID, userName, firstname, lastname, userEmail, phoneNo, userType);
 
-                return thisAccount;
+            return thisAccount;
             //}
         }
 
+        //SQ: WEB METHOD NOT DONE. Just got it started
+        [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
+        public List<Account> FindTutor(string courseName)
+        {
+            List<Account> relAccount;
 
+            relAccount = new List<Account>;
+
+            return relAccount;
+        }
+
+        
     }
 }
