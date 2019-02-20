@@ -29,7 +29,12 @@
             //since our logon web method simply returns a true/false, that value is mapped
             //to a generic property of the server response called d (I assume short for data
             //but honestly I don't know...)
-            alert("you are logged in!");
+            if (msg.d) {
+                alert("Login Successful")
+            }
+            else {
+                alert("Login Failed. Wrong username or password")
+            }
         },
         error: function (e) {
             //if something goes wrong in the mechanics of delivering the
