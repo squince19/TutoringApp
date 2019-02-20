@@ -77,6 +77,8 @@ namespace TutorApp
             sqlDa.Fill(sqlDt);
             //check to see if any rows were returned.  If they were, it means it's 
             //a legit account
+
+            //SQ changed this
             if (sqlDt.Rows.Count > 0)
             {
                 //if we found an account, store the id and admin status in the session
