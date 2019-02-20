@@ -23,11 +23,11 @@
                 <input type="password" id="logonPassword" placeholder="Enter Password" name="psw" required>
 
                 <button type="submit" class="btn">Login</button>
-                <button type="submit" class="btn">Create Account</button>
+                <button type="button" class="btn" onclick="document.getElementById('createAccount').style.display='block'">Create Account</button>
 
             </form>
         </div>
-    </header>   
+    </header>
 
     <main>
         <button class="tablink" onclick="openPage('AboutUs', this, '#0000ff')" id="defaultOpen">About Us</button>
@@ -46,6 +46,33 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
     </main>
+
+    <!-- Create Account Modal -->
+    <div id="createAccount" class="modal">
+        <span onclick="document.getElementById('createAccount').style.display='none'" class="close" title="Close">&times;</span>
+
+        <!-- Create Account Modal Content -->
+        <form action="" class="createAccountForm">
+            <div class="container">
+                <h1>Create Account</h1>
+
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <label for="psw-repeat"><b>Retype Password</b></label>
+                <input type="password" placeholder="Retype Password" name="psw-repeat" required>
+
+                <div class="clearfix">
+                    <button type="submit" class="btn">Sign Up</button>
+                    <button type="button" onclick="document.getElementById('createAccount').style.display='none'" class="cancelbtn">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <script src="JavaScript.js"></script>
 
     <script>
