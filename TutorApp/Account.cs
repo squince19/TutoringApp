@@ -5,15 +5,16 @@ using System.Web;
 
 namespace TutorApp
 {
+    [Serializable]
     public class Account
     {
-        public int id;
-        public string userName;
-        public string firstName;
-        public string lastName;
-        public string email;
-        public string phoneNumber;
-        public string userType;
+        public int id { get; set; }
+        public string userName { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string email { get; set; }
+        public string phoneNumber { get; set; }
+        public string userType { get; set; }
 
         public Account()
         {
@@ -23,13 +24,13 @@ namespace TutorApp
         public Account(int userID, string userName, string firstName, 
             string lastName, string email, string phoneNumber, string userType)
         {
-            userID = id;
-            userName = this.userName;
-            firstName = this.firstName;
-            lastName = this.lastName;
-            email = this.email;
-            phoneNumber = this.phoneNumber;
-            userType = this.userType;
+            id = userID;
+            this.userName = userName;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.phoneNumber = phoneNumber;
+            this.userType = userType;
         }
         
     }
