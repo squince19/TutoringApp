@@ -5,178 +5,198 @@
     <script src="JavaScript.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="Stylesheet_TutoringProject.css">
+
     <title>Tutor up</title>
-</head>
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    /* The container */
-    .container {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 12px;
-        margin-right: 10px;
-        cursor: pointer;
-        font-size: 22px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        
-    }
-
-        /* Hide the browser's default checkbox */
-        .container input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
-            float: left;
+    <style>
+        * {
+            box-sizing: border-box;
         }
 
-    /* Create a custom checkbox */
-    .checkmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: #eee;
-    }
+        /* The container */
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
 
-    /* On mouse-over, add a grey background color */
-    .container:hover input ~ .checkmark {
-        background-color: #ccc;
-    }
+            /* Hide the browser's default checkbox */
+            .container input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+                float: left;
+            }
 
-    /* When the checkbox is checked, add a blue background */
-    .container input:checked ~ .checkmark {
-        background-color: #2196F3;
-    }
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+        }
 
-    /* Create the checkmark/indicator (hidden when not checked) */
-    .checkmark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
 
-    /* Show the checkmark when checked */
-    .container input:checked ~ .checkmark:after {
-        display: block;
-    }
+        /* When the checkbox is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
 
-    /* Style the checkmark/indicator */
-    .container .checkmark:after {
-        left: 9px;
-        top: 5px;
-        width: 5px;
-        height: 10px;
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }
-    .nav {
-        background-color: #0000ff;
-        color: white;
-        padding: 16px 20px;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        opacity: 0.9;
-        text-decoration:none;
-    }
-    .navDiv {
-        margin-top: 25px;
-    }
-    .btn {
-        background-color: #0000ff;
-        color: white;
-        padding: 16px 20px;
-        border: none;
-        cursor: pointer;
-        width: auto;
-        opacity: 0.9;
-        text-decoration:none;
-        height:auto;
-        font-size:14px;
-        font-family:sans-serif;
-    }
-    hr{
-        width: 75%;
-    }
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
 
-    #aplus {
-        float: right;
-        height: 300px;
-        width: 300px;
-        position: relative;
-        right: 650px;
-        bottom: 400px;
-    }
-</style>
+        /* Show the checkmark when checked */
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .nav {
+            background-color: #0000aa;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+            text-decoration: none;
+        }
+
+        .navDiv {
+            margin-top: 25px;
+        }
+
+        .btn {
+            background-color: #0000aa;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: auto;
+            opacity: 0.9;
+            text-decoration: none;
+            height: auto;
+            font-size: 14px;
+        }
+
+        hr {
+            width: 75%;
+        }
+
+        #aplus {
+            float: right;
+            height: 300px;
+            width: 300px;
+            position: relative;
+            right: 650px;
+            bottom: 400px;
+        }
+    </style>
+</head>
+
 <body>
     <div id="navDiv">
         <a href="HtmlPage1.html" class="nav">Home</a>
-        <a href="#" class="nav">Careers</a>
         <a href="#" class="nav">Edit Profile</a>
     </div>
-    <h1>Hello!</h1>
-    <h3>Please check subjects that your are interested in!</h3>
-    <div id="subjectDiv">
-        <label class="container">
-            Mathematics
-            <input id="Mathematics" type="checkbox">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">
-            Accounting
-            <input id="Accounting" type="checkbox">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">
-            Computers
-            <input id="Computers" type="checkbox">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">
-            Chemistry
-            <input id="Chemistry" type="checkbox">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">
-            Supply Chain
-            <input id="SupplyChain" type="checkbox">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">
-            Music
-            <input id="Music" type="checkbox">
-            <span class="checkmark"></span>
-        </label>
-        <label class="container">
-            American History
-            <input id="AmericanHistory" type="checkbox">
-            <span class="checkmark"></span>
-        </label>
+    <div id="largeContainer" style="width: 1000px;">
+        <h1>[Insert Name Here]</h1>
+        <hr>
+        <div id="contactInfo" style="float: left; width: 400px;">
+            <h2>Phone Number:</h2>
+            <p>(insert output area)</p>
+            <h2>Email</h2>
+            <p>(insert output area)</p>
+            <h2>Course:</h2>
+            <p>(insert output area)</p>
+        </div>
+        <div style="float: left; width:200px">
+            <img id="calendarImg" src="images/calendar.png" alt="CalendarImg" />
+        </div>
+
+        <div id="subjectDiv" style="float: left; width:400px">
+            <h3>Interests:</h3>
+            <label class="container">
+                Mathematics
+                <input id="Mathematics" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Accounting
+                <input id="Accounting" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Computers
+                <input id="Computers" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Chemistry
+                <input id="Chemistry" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Supply Chain
+                <input id="SupplyChain" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Music
+                <input id="Music" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                American History
+                <input id="AmericanHistory" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+        </div>
     </div>
-    <div>
-        <hr />
-        <br />
-        <br />
-        <a href="HtmlPage1.html" class="btn">Cancel</a>
-        <button id ="save" class ="btn" type="submit">Save and Continue</button>
-    </div>
-    <div>
-        <img id ="aplus" src="aplus.png" alt="A Plus" />
-    </div>
-  
+        <div>
+            <hr />
+            <br />
+            <br />
+            <a href="HtmlPage1.html" class="btn">Cancel</a>
+            <button id="save" class="btn" type="submit">Save and Continue</button>
+        </div>
+        <div>
+            <!---<img id="aplus" src="aplus.png" alt="A Plus" />-->
+        </div>
+
 
 </body>
 </html>
