@@ -77,13 +77,15 @@ namespace TutorApp
             sqlDa.Fill(sqlDt);
             //check to see if any rows were returned.  If they were, it means it's 
             //a legit account
+
+            //SQ changed this
             if (sqlDt.Rows.Count > 0)
             {
                 //if we found an account, store the id and admin status in the session
                 //so we can check those values later on other method calls to see if they 
                 //are 1) logged in at all, and 2) and admin or not
-                
-                
+
+
                 //Session["id"] = sqlDt.Rows[0]["id"];
                 //Session["admin"] = sqlDt.Rows[0]["admin"];
                 success = true;
@@ -116,19 +118,63 @@ namespace TutorApp
 
             //if (sqlDt.Rows[0] != null)
             //{
-                string firstname = (string)sqlDt.Rows[0]["firstName"];
-                int userID = (int)sqlDt.Rows[0]["userID"];
-                string lastname = (string)sqlDt.Rows[0]["lastName"];
-                string userEmail = (string)sqlDt.Rows[0]["userEmail"];
-                string userType = (string)sqlDt.Rows[0]["userType"];
-                string phoneNo = (string)sqlDt.Rows[0]["phoneNumber"];
+            string firstname = (string)sqlDt.Rows[0]["firstName"];
+            int userID = (int)sqlDt.Rows[0]["userID"];
+            string lastname = (string)sqlDt.Rows[0]["lastName"];
+            string userEmail = (string)sqlDt.Rows[0]["userEmail"];
+            string userType = (string)sqlDt.Rows[0]["userType"];
+            string phoneNo = (string)sqlDt.Rows[0]["phoneNumber"];
 
-                thisAccount = new Account(userID, userName, firstname, lastname, userEmail, phoneNo, userType);
+            thisAccount = new Account(userID, userName, firstname, lastname, userEmail, phoneNo, userType);
 
-                return thisAccount;
+            return thisAccount;
             //}
         }
 
+        //SQ: WEB METHOD NOT DONE. Just got it started
+        [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
+        public List<Account> FindTutor(string courseLetter, string courseCode)
+        {
+            string courseName = courseLetter + courseCode;
 
+            List<Account> relAccount;
+
+            relAccount = new List<Account>();
+
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
+            string sqlSelect = "SELECT userID, firstName, lastName, phoneNumber, userEmail FROM users WHERE userType=tutor and courseProf=@courseValue"; //finish this with course type;
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@courseValue", HttpUtility.UrlDecode(courseName));
+
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            DataTable dataTable = new DataTable();
+            sqlDa.Fill(dataTable);
+
+            List<Account> tempList = new List<Account>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                int idValue = Convert.ToInt32(row["userID"]);
+                Account tempAcc = new Account(
+                    idValue,
+                    row["firstName"].ToString(),
+                    row["lastName"].ToString(),
+                    row["phoneNumber"].ToString(),
+                    row["email"].ToString()
+                    );
+
+                tempList.Add(tempAcc);
+            }
+
+            int i = tempList.Count;
+
+            Random r = new Random();
+            //METHOD NOT FINISHED, WILL WORK ON THIS AFTER WORK (10PM)
+            
+
+            return relAccount;
+        }
     }
 }
+
