@@ -5,7 +5,6 @@
     //note we encode the values for transmission over the web.  All the \'s are just
     //because we want to wrap our keynames and values in double quotes so we have to
     //escape the double quotes (because the overall string we're creating is in double quotes!)
-    //SQ: This is the line of code Im having trouble with
     var parameters = "{\"userName\":\"" + encodeURI(userName) + "\",\"userPassword\":\"" + encodeURI(userPassword) + "\"}";
     //alert('here');
     //jQuery ajax method
@@ -25,10 +24,6 @@
         //gets a response, it calls the function mapped to the success key here
 
         success: function (msg) {
-            //the server response is in the msg object passed in to the function here
-            //since our logon web method simply returns a true/false, that value is mapped
-            //to a generic property of the server response called d (I assume short for data
-            //but honestly I don't know...)
             if (msg.d) {
                 alert("Login Successful")
             }
@@ -37,11 +32,30 @@
             }
         },
         error: function (e) {
-            //if something goes wrong in the mechanics of delivering the
-            //message to the server or the server processing that message,
-            //then this function mapped to the error key is executed rather
-            //than the one mapped to the success key.  This is just a garbage
-            //alert becaue I'm lazy
+            alert("boo...");
+        }
+    });
+}
+
+function onProfileLoad(Account) {
+    var webMethod = "WebService.asmx/GetUserInfo";
+    var parameters = //username, userpassword
+    $.ajax({
+        type: "POST",
+        url: webMethod,
+        data: parameters,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+            //INNER HTML STUFF
+            if (msg.d) {
+                alert("Login Successful")
+            }
+            else {
+                alert("Login Failed. Wrong username or password")
+            }
+        },
+        error: function (e) {
             alert("boo...");
         }
     });
