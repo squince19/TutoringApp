@@ -48,6 +48,18 @@ function onProfileLoad(Account) {
         dataType: "json",
         success: function (msg) {
             //INNER HTML STUFF
+            var nameInput;
+            nameInput = document.getElementById("nameOutput").value;
+            document.getElementById("nameOutput").innerHTML = nameInput;
+            var emailInput;
+            emailInput = document.getElementById("emailOutput").value;
+            document.getElementById("emailOutput").innerHTML = nameInput;
+            var courseInput;
+            courseInput = document.getElementById("courseOutput").value;
+            document.getElementById("courseOutput").innerHTML = nameInput;
+
+
+        
             if (msg.d) {
                 alert("Login Successful")
             }
