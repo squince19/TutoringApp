@@ -35,11 +35,11 @@ namespace TutorApp
 
         public Account(int userID, string firstName, string lastName, string phoneNumber, string email)
         {
-            userID = id;
-            firstName = this.firstName;
-            lastName = this.lastName;
-            phoneNumber = this.phoneNumber;
-            email = this.email;
+            id = userID;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.phoneNumber = phoneNumber;
+            this.email = email;
         }
         
     }
