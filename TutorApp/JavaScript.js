@@ -26,35 +26,10 @@
         success: function (msg) {
             if (msg.d) {
                 alert("Login Successful")
-                //alert(userName);
-                window.location = "PersonalizeProfile.html";
-
             }
             else {
                 alert("Login Failed. Wrong username or password")
             }
-        },
-        error: function (e) {
-           // alert("boo...");
-        }
-    });
-}
-
-function onProfileLoad() {
-    var webMethod = "WebService.asmx/GetUserInfo";
-    
-    //var parameters = Session["id"];
-    $.ajax({
-        type: "POST",
-        
-        url: webMethod,
-        data: parameters,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (msg) {
-            var userID = msg.userID;
-            document.getElementById("nameoutput").innerHTML = formatter.format(userName);
-       
         },
         error: function (e) {
             alert("boo...");
@@ -62,3 +37,38 @@ function onProfileLoad() {
     });
 }
 
+function onProfileLoad(Account) {
+    var webMethod = "WebService.asmx/GetUserInfo";
+    var parameters = //username, userpassword
+    $.ajax({
+        type: "POST",
+        url: webMethod,
+        data: parameters,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+            //INNER HTML STUFF
+            var nameInput;
+            nameInput = document.getElementById("nameOutput").value;
+            document.getElementById("nameOutput").innerHTML = nameInput;
+            var emailInput;
+            emailInput = document.getElementById("emailOutput").value;
+            document.getElementById("emailOutput").innerHTML = nameInput;
+            var courseInput;
+            courseInput = document.getElementById("courseOutput").value;
+            document.getElementById("courseOutput").innerHTML = nameInput;
+
+
+        
+            if (msg.d) {
+                alert("Login Successful")
+            }
+            else {
+                alert("Login Failed. Wrong username or password")
+            }
+        },
+        error: function (e) {
+            alert("boo...");
+        }
+    });
+}
