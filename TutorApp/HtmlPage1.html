@@ -15,7 +15,7 @@
             <div class="logo"></div>
 
             <!--<input type="text" placeholder="Search a Topic..." name="search" class="search" style="width: 50%; float: left; margin-top: 20%; margin-left: 5%; outline-color: #ffffff;">-->
-            <form action="" class="headerForm" style="float: right;" onsubmit="LogOn($('#logonID').val(), $('#logonPassword').val()); return false;">
+            <form action="" class="headerForm" style="float: right;">
                 <h1>Login</h1>
                 <label for="userName"><b>User Name</b></label>
                 <input type="text" id="logonID" placeholder="Enter User Name" name="userName" required>
@@ -23,7 +23,7 @@
                 <label for="psw"><b>Password</b></label>
                 <input type="password" id="logonPassword" placeholder="Enter Password" name="psw" required>
 
-                <button type="submit" class="btn">Login</button>
+                <button type="button" class="btn" onclick="LogOn($('#logonID').val(), $('#logonPassword').val()); return false;">Login</button>
                 <button type="button" class="btn" onclick="document.getElementById('createAccount').style.display='block'">Create Account</button>
 
             </form>

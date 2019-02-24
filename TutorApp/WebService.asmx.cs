@@ -55,7 +55,7 @@ namespace TutorApp
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
             //here's our query.  A basic select with nothing fancy.  Note the parameters that begin with @
             //NOTICE: we added admin to what we pull, so that we can store it along with the id in the session
-            string sqlSelect = "SELECT userName, userPassword FROM users WHERE userName=@idValue and userPassword=@passValue";
+            string sqlSelect = "SELECT userID, userName, userPassword FROM users WHERE userName=@idValue and userPassword=@passValue";
 
             //set up our connection object to be ready to use our connection string
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
@@ -86,7 +86,7 @@ namespace TutorApp
                 //are 1) logged in at all, and 2) and admin or not
 
 
-                //Session["id"] = sqlDt.Rows[0]["id"];
+                Session["id"] = sqlDt.Rows[0]["userID"];
                 //Session["admin"] = sqlDt.Rows[0]["admin"];
                 success = true;
             }
@@ -95,20 +95,20 @@ namespace TutorApp
         }
 
         [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
-        public Account GetUserInfo(string userName, string userPassword)
+        public Account GetUserInfo()
         {
             Account thisAccount;
-
+            int i = Convert.ToInt32(Session["id"]);
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
-            string sqlSelect = "SELECT userID, firstName, lastName, phoneNumber, userEmail, userType FROM users WHERE userName=@idValue and userPassword=@passValue";
+            string sqlSelect = "SELECT userID, firstName, lastName, phoneNumber, userEmail, userType FROM users WHERE userID=@idValue";
 
             //set up our connection object to be ready to use our connection string
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             //set up our command object to use our connection, and our query
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
 
-            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(userName));
-            sqlCommand.Parameters.AddWithValue("@passValue", HttpUtility.UrlDecode(userPassword));
+            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(i.ToString()));
+            //sqlCommand.Parameters.AddWithValue("@passValue", HttpUtility.UrlDecode(userPassword));
 
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
             //here's the table we want to fill with the results from our query
@@ -119,13 +119,13 @@ namespace TutorApp
             //if (sqlDt.Rows[0] != null)
             //{
             string firstname = (string)sqlDt.Rows[0]["firstName"];
-            int userID = (int)sqlDt.Rows[0]["userID"];
+            int userID = i;
             string lastname = (string)sqlDt.Rows[0]["lastName"];
             string userEmail = (string)sqlDt.Rows[0]["userEmail"];
             string userType = (string)sqlDt.Rows[0]["userType"];
             string phoneNo = (string)sqlDt.Rows[0]["phoneNumber"];
 
-            thisAccount = new Account(userID, userName, firstname, lastname, userEmail, phoneNo, userType);
+            thisAccount = new Account(userID, firstname, lastname, userEmail, phoneNo, userType);
 
             return thisAccount;
             //}

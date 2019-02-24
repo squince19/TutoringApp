@@ -21,25 +21,25 @@ namespace TutorApp
 
         }
 
-        public Account(int userID, string userName, string firstName, 
+        public Account(int userID, string firstName, 
             string lastName, string email, string phoneNumber, string userType)
         {
             id = userID;
-            this.userName = userName;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.email = email;
-            this.phoneNumber = phoneNumber;
-            this.userType = userType;
+            userName = this.userName;
+            firstName = this.firstName;
+            lastName = this.lastName;
+            email = this.email;
+            phoneNumber = this.phoneNumber;
+            userType = this.userType;
         }
 
         public Account(int userID, string firstName, string lastName, string phoneNumber, string email)
         {
             id = userID;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.phoneNumber = phoneNumber;
-            this.email = email;
+            firstName = this.firstName;
+            lastName = this.lastName;
+            phoneNumber = this.phoneNumber;
+            email = this.email;
         }
         
     }
