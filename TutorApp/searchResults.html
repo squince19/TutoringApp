@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="JavaScript.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="Stylesheet_TutoringProject.css">
+
+    <title>Tutor up</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* The container */
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* Hide the browser's default checkbox */
+            .container input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+                float: left;
+            }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .nav {
+            background-color: #0000aa;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+            text-decoration: none;
+        }
+
+        .navDiv {
+            margin-top: 25px;
+        }
+
+        .btn {
+            background-color: #0000aa;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: auto;
+            opacity: 0.9;
+            text-decoration: none;
+            height: auto;
+            font-size: 14px;
+        }
+
+        hr {
+            width: 75%;
+        }
+
+        #aplus {
+            float: right;
+            height: 300px;
+            width: 300px;
+            position: relative;
+            right: 650px;
+            bottom: 400px;
+        }
+        #myUL {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #myUL li a {
+                border: 1px solid #ddd; 
+                margin-top: -1px; 
+                background-color: #f6f6f6;
+                padding: 12px; 
+                text-decoration: none; 
+                font-size: 18px;
+                color: black; 
+                display: block; 
+        }
+        #searchHeader th {
+            border: 1px solid #ddd;
+            margin-top: -1px;
+            background-color: #808080;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            color: black;
+            width: 1000px;
+            position: relative;
+            border-radius: 8px;
+                    }
+        #searchResults td {
+            border: 1px solid #ddd;
+            margin-top: -1px;
+            background-color: #ccc;
+            padding: 1px;
+            text-decoration: none;
+            font-size: 18px;
+            color: black;
+            width: 1000px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body onload="onProfileLoad($('#logonID').val(), $('#logonPassword').val())">
+    <div id="navDiv">
+        <a href="HtmlPage1.html" class="nav">Home</a>
+        <a href="#" class="nav">Edit Profile</a>
+    </div>
+    <div id="largeContainer" style="width: 1000px;">
+        <h1 id="searchResultsTitle">Search Results</h1>
+        <hr>
+        <div id="contactInfo">
+            <input type="text" placeholder="Search a Topic..." name="search" class="search" style="width: 100%; outline-color: #ffffff;">
+            <table id="searchResults">
+                <tr id="searchHeader">
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Student/Tutor</th>
+                    <th>Course</th>
+                </tr>
+                <tr>
+                    <td>(Append DB Value)</td>
+                    <td>(Append DB Value)</td>
+                    <td>(Append DB Value)</td>
+                    <td>(Append DB Value)</td>
+                </tr>
+                <tr>
+                    <td>Kevin</td>
+                    <td>Bi</td>
+                    <td>Tutor</td>
+                    <td>Course</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div>
+        <hr />
+        <br />
+        <br />
+    </div>
+    <div>
+        <!---<img id="aplus" src="aplus.png" alt="A Plus" />-->
+    </div>
+
+
+</body>
+</html>
