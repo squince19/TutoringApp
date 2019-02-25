@@ -131,18 +131,17 @@ namespace TutorApp
             //}
         }
 
-        //SQ: WEB METHOD NOT DONE. Just got it started
         [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
-        public List<Account> FindTutor(string courseLetter, string courseCode)
+        public List<Account> FindTutor(string courseName)
         {
-            string courseName = courseLetter + courseCode;
+            //web method will return a list of accounts that are proficient in the users course
 
             List<Account> relAccount;
 
             relAccount = new List<Account>();
 
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
-            string sqlSelect = "SELECT userID, firstName, lastName, phoneNumber, userEmail FROM users WHERE userType=tutor and courseProf=@courseValue"; //finish this with course type;
+            string sqlSelect = "SELECT userID, firstName, lastName, phoneNumber, userEmail FROM users WHERE userType='tutor' and courseProf=@courseValue"; //finish this with course type;
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
 
@@ -161,18 +160,44 @@ namespace TutorApp
                     row["firstName"].ToString(),
                     row["lastName"].ToString(),
                     row["phoneNumber"].ToString(),
-                    row["email"].ToString()
+                    row["userEmail"].ToString()
                     );
 
                 tempList.Add(tempAcc);
             }
 
             int i = tempList.Count;
-
+            int[] tempArray = new int[3];
             Random r = new Random();
-            //METHOD NOT FINISHED, WILL WORK ON THIS AFTER WORK (10PM)
-            
+
+            //do loop generates random numbers, and also checks to make sure that they are not already in the array
+            //It will generate numbers until the array is full of unique numbers
+            do
+            {
+                for (int x = 0; x < 3; x++)
+                {
+                    tempArray[x] = r.Next(1, i);
+                }
+            } while (tempArray[0] == tempArray[1] || tempArray[1] == tempArray[2] || tempArray[2] == tempArray[0]);
+
+
+            int one, two, three;
+            one = tempArray[0];
+            two = tempArray[1];
+            three = tempArray[2];
+
+            relAccount.Add(tempList[one]);
+            relAccount.Add(tempList[two]);
+            relAccount.Add(tempList[three]);
+
             return relAccount;
+        }//END WEB METHOD
+
+        [WebMethod(EnableSession = true)] 
+        public Account AddUser(string str)
+        {
+            Account newAcc = new Account();
+            return newAcc;
         }
     }
 }
