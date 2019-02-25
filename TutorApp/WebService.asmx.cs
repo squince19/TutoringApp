@@ -194,10 +194,38 @@ namespace TutorApp
         }//END WEB METHOD
 
         [WebMethod(EnableSession = true)] 
-        public Account AddUser(string str)
+        public void AddUser(string userType, string fname, string lname, string phoneNumber, 
+            string userName, string email, string password)
         {
-            Account newAcc = new Account();
-            return newAcc;
+            Account newAcc = new Account(fname, lname, phoneNumber, email, userType);
+
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
+            string sqlInsert = "insert into users ( userName, userPassword, userEmail, userType," +
+                " firstName, lastName, phoneNumber) values(@userName, @password, @email, @userType, @fname, @lname, @phoneNumber);";
+            //finish this with course type;
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlInsert, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@userName", HttpUtility.UrlDecode(userName));
+            sqlCommand.Parameters.AddWithValue("@password", HttpUtility.UrlDecode(password));
+            sqlCommand.Parameters.AddWithValue("@email", HttpUtility.UrlDecode(email));
+            sqlCommand.Parameters.AddWithValue("@userType", HttpUtility.UrlDecode(userType));
+            sqlCommand.Parameters.AddWithValue("@fname", HttpUtility.UrlDecode(fname));
+            sqlCommand.Parameters.AddWithValue("@lname", HttpUtility.UrlDecode(lname));
+            sqlCommand.Parameters.AddWithValue("@phoneNumber", HttpUtility.UrlDecode(phoneNumber));
+
+            sqlConnection.Open();
+
+            try
+            {
+                int accountID = Convert.ToInt32(sqlCommand.ExecuteScalar());
+
+            }
+            catch (Exception e)
+            {
+            }
+            sqlConnection.Close();
+
         }
     }
 }
