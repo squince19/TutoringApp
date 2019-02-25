@@ -55,7 +55,7 @@ namespace TutorApp
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
             //here's our query.  A basic select with nothing fancy.  Note the parameters that begin with @
             //NOTICE: we added admin to what we pull, so that we can store it along with the id in the session
-            string sqlSelect = "SELECT userID, userName, userPassword FROM users WHERE userName=@idValue and userPassword=@passValue";
+            string sqlSelect = "SELECT userID, userName, userPassword, userEmail, userType, firstName, lastName, phoneNumber, courseProf FROM users WHERE userName=@idValue and userPassword=@passValue";
 
             //set up our connection object to be ready to use our connection string
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
@@ -78,16 +78,21 @@ namespace TutorApp
             //check to see if any rows were returned.  If they were, it means it's 
             //a legit account
 
-            //SQ changed this
             if (sqlDt.Rows.Count > 0)
             {
                 //if we found an account, store the id and admin status in the session
                 //so we can check those values later on other method calls to see if they 
                 //are 1) logged in at all, and 2) and admin or not
-
-
+                
                 Session["id"] = sqlDt.Rows[0]["userID"];
-                //Session["admin"] = sqlDt.Rows[0]["admin"];
+                Session["userName"] = sqlDt.Rows[0]["userName"];
+                Session["userPassword"] = sqlDt.Rows[0]["userPassword"];
+                Session["userEmail"] = sqlDt.Rows[0]["userEmail"];
+                Session["userType"] = sqlDt.Rows[0]["userType"];
+                Session["firstName"] = sqlDt.Rows[0]["firstName"];
+                Session["lastName"] = sqlDt.Rows[0]["lastName"];
+                Session["phoneNumber"] = sqlDt.Rows[0]["phoneNumber"];
+                Session["courseProf"] = sqlDt.Rows[0]["courseProf"];
                 success = true;
             }
             //return the result!
@@ -97,7 +102,9 @@ namespace TutorApp
         [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
         public Account GetUserInfo()
         {
-            Account thisAccount;
+            int uid = Convert.ToInt32(Session["id"]);
+            //load account information into page based off of the info from the session ID
+            Account thisAccount = new Account();
             int i = Convert.ToInt32(Session["id"]);
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
             string sqlSelect = "SELECT userID, firstName, lastName, phoneNumber, userEmail, userType FROM users WHERE userID=@idValue";
@@ -107,7 +114,7 @@ namespace TutorApp
             //set up our command object to use our connection, and our query
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
 
-            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(i.ToString()));
+            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(uid.ToString()));
             //sqlCommand.Parameters.AddWithValue("@passValue", HttpUtility.UrlDecode(userPassword));
 
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
@@ -116,19 +123,31 @@ namespace TutorApp
             //here we go filling it!
             sqlDa.Fill(sqlDt);
 
-            //if (sqlDt.Rows[0] != null)
+           // if (sqlDt.Rows[0] != null)
             //{
-            string firstname = (string)sqlDt.Rows[0]["firstName"];
-            int userID = i;
-            string lastname = (string)sqlDt.Rows[0]["lastName"];
-            string userEmail = (string)sqlDt.Rows[0]["userEmail"];
-            string userType = (string)sqlDt.Rows[0]["userType"];
-            string phoneNo = (string)sqlDt.Rows[0]["phoneNumber"];
+                Account tempAccount;
 
-            thisAccount = new Account(userID, firstname, lastname, userEmail, phoneNo, userType);
+            string firstname = Session["firstName"].ToString();
+            int userID = Convert.ToInt32(Session["userID"]);
+            string lastname = (string)Session["lastName"];
+            string userEmail = (string)Session["userEmail"];
+            string userType = (string)Session["userType"];
+            string phoneNo = (string)Session["phoneNumber"];
 
+            
+                //int userID = i;
+                //string lastname = (string)sqlDt.Rows[0]["lastName"];
+                //string userEmail = (string)sqlDt.Rows[0]["userEmail"];
+                //string userType = (string)sqlDt.Rows[0]["userType"];
+                //string phoneNo = (string)sqlDt.Rows[0]["phoneNumber"];
+
+                tempAccount = new Account(userID, firstname, lastname, userEmail, phoneNo, userType);
+                thisAccount = tempAccount;
+                //dlist = thisAccount.lastName + thisAccount.phoneNumber;
+              //   }
+            //return dlist;
             return thisAccount;
-            //}
+            
         }
 
         [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
@@ -229,4 +248,3 @@ namespace TutorApp
         }
     }
 }
-
