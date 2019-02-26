@@ -166,7 +166,7 @@
     </style>
 </head>
 
-<body onload="onProfileLoad($('#logonID').val(), $('#logonPassword').val())">
+<body onload="populateResults()">
     <div id="navDiv">
         <a href="HtmlPage1.html" class="nav">Home</a>
         <a href="#" class="nav">Edit Profile</a>
@@ -184,7 +184,7 @@
                     <th>Course</th>
                 </tr>
                 <tr>
-                    <td id="firstname1">(Append DB Value)</td>
+                    <td><p id="firstname1"></p></td>
                     <td id="lastname1">(Append DB Value)</td>
                     <td id="email1">(Append DB Value)</td>
                     <td id="course1">(Append DB Value)</td>

@@ -115,7 +115,7 @@ namespace TutorApp
         }
 
         [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
-        public List<Account> FindTutor(string courseName)
+        public List<Account> FindTutor(string courseProf)
         {
             //web method will return a list of accounts that are proficient in the users course
 
@@ -128,7 +128,7 @@ namespace TutorApp
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
 
-            sqlCommand.Parameters.AddWithValue("@courseValue", HttpUtility.UrlDecode(courseName));
+            sqlCommand.Parameters.AddWithValue("@courseValue", HttpUtility.UrlDecode(courseProf));
 
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
             DataTable dataTable = new DataTable();

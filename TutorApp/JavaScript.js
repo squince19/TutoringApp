@@ -4,8 +4,8 @@ function displayButton() {
     if (login == true) {
         document.getElementById('searchTable').style.display = "block";
         document.getElementById('headerForm').style.visibility = "hidden";
-        //document.getElementById('searchButton').style.display = "block";
-    }
+        //document.getElementById('headerNav').style.display = "block";
+      }
     else
         document.getElementById('searchTable').style.display = "none";
         document.getElementById('headerForm').style.display = "block";
@@ -42,10 +42,12 @@ function LogOn(userName, userPassword) {
     });
 }
 
+var tutorArray;
 
-function searchTutors(courseName) {
+
+function searchTutors(courseProf) {
     var webMethod = "WebService.asmx/FindTutor";
-    var parameters = "{\"courseProf\":\"" + encodeURI(courseName) + "\"}";
+    var parameters = "{\"courseProf\":\"" + encodeURI(courseProf) + "\"}";
     $.ajax({
         type: "POST",
         url: webMethod,
@@ -54,11 +56,24 @@ function searchTutors(courseName) {
         dataType: "json",
         success: function (msg) {
             alert("working!")
+            var tempArray;
+            tutorArray = msg.d;
+            alert(tutorArray[0].firstName);
+
             window.location.href = 'searchResults.html';
-            document.getElementById("firstname1").innerHTML = msg.d[0].firstName;
-            document.getElementById("lastname1").innerHTML = msg.d[1].lastName;
-            document.getElementById("email1").innerHTML = msg.d[2].email;
-            document.getElementById("course1").innerHTML = msg.d[3].courseProf;
+        },
+        error: function (e) {
+            alert("sad");
+        }
+    });
+}
+
+function populateResults() {
+
+    document.getElementById("firstname1").innerHTML = tutorArray[0].firstName;
+    document.getElementById('lastname1').innerHTML = tutorArray[0].lastName;
+    document.getElementById('email1').innerHTML = tutorArray[0].email;
+    document.getElementById('course1').innerHTML = tutorArray[0].courseProf;
 
             //document.getElementById("firstname2").innerHTML = msg.d.email;
             //document.getElementById("lastname2").innerHTML = msg.d.email;
@@ -69,13 +84,8 @@ function searchTutors(courseName) {
             //document.getElementById("lastname3").innerHTML = msg.d.email;
             //document.getElementById("email3").innerHTML = msg.d.email;
             //document.getElementById("course3").innerHTML = msg.d.email;
-
-        },
-        error: function (e) {
-            alert("sad");
-        }
-    });
 }
+
 
 
 function onProfileLoad() {
