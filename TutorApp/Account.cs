@@ -15,6 +15,7 @@ namespace TutorApp
         public string email;
         public string phoneNumber;
         public string userType;
+        public string courseProf;
         
 
 
