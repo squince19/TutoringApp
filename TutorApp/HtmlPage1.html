@@ -13,32 +13,16 @@
     <header>
         <div class="headerImage">
             <div id="postLogin">
-                <div class="headerNav">
-                    <button class="headerBtn">My Profile</button>
+                <div id="headerNavView" class="headerNav">
+                    <button href="PersonalizeProfile.html" class="headerBtn">My Profile</button>
                     <button class="signoutBtn" onclick="signout()">Sign Out</button>
                 </div>
 
-                <div class="searchContainer" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                    <input type="text" placeholder="Search a Topic..." id="searchBar" name="search" style="width: 500px;">
-                    <button type="submit" class="searchBtn"><span>Tutor Up! </span></button>
+                <div class="searchContainer" id="searchTable"style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <input type="text" id="searchBar" placeholder="Search a Topic..." name="search" style="width: 500px;">
+                    <button type="button" onclick="searchTutors($('#searchBar').val());" class="searchBtn"><span>Tutor Up! </span></button>
                 </div>
             </div>
-            
-            <!--<div class="tableHeader" style="background-color: transparent;">
-                <table id="searchTable" class="tableDiv" style="float: none; display: none; background-color: transparent">
-                    <tr style="background-color: transparent;">
-                        <td style="background-color: transparent;">
-                            <input type="text" placeholder="Search a Topic... Ex: CIS425" id="searchBar" name="search" class="search" style="width: 500px;
-                float: left; margin-top: 20%; margin-left: 5%; outline-color: #ffffff;">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="background-color: transparent;">
-                            <button type="button" class="btn" onclick="searchTutors($('#searchBar').val()); return false;" style="width: 200px;">Search</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>-->
             
             <form action="" class="headerForm" id="headerForm" style="float: right;">
                 <div class="logo">

@@ -1,9 +1,12 @@
-﻿var login;
+﻿var login = sessionStorage.getItem('logon');
+
 
 function displayButton() {
-    if (login == true) {
+    var log = sessionStorage.getItem('logon');
+    if (log == 'true') {
         document.getElementById('searchTable').style.display = "block";
         document.getElementById('headerForm').style.visibility = "hidden";
+        document.getElementById('headerNavView').style.display = "block";
         //document.getElementById('headerNav').style.display = "block";
       }
     else
@@ -28,9 +31,10 @@ function LogOn(userName, userPassword) {
         success: function (msg) {
             if (msg.d) {
                 alert("Login Successful")
-                //window.location.href = 'PersonalizeProfile.html';
-                login = true;
+                window.location.href = 'PersonalizeProfile.html';
+                sessionStorage.setItem('logon', 'true');
                 displayButton();
+                alert(sessionStorage.getItem('logon'));
             }
             else {
                 alert("Login Failed. Wrong username or password")
