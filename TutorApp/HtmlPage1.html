@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="Stylesheet_TutoringProject.css">
     <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
 </head>
-<body>
+<body onload="displayButton()">
     <header>
         <div class="headerImage">
             <div id="postLogin">
@@ -18,9 +18,22 @@
                     <button class="signoutBtn" onclick="document.getElementById('loginForm').style.display='block'">Sign Out</button>
                 </div>
             </div>
-
-            <!--<input type="text" placeholder="Search a Topic..." name="search" class="search" style="width: 50%; float: left; margin-top: 20%; margin-left: 5%; outline-color: #ffffff;">-->
-            <form action="" class="headerForm" style="float: right;">
+            <div class="tableHeader">
+                <table id="searchTable" class="tableDiv" style="float: left; display: none;">
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="Search a Topic... Ex: CIS425" id="searchBar" name="search" class="search" style="width: 50%;
+                float: left; margin-top: 20%; margin-left: 5%; outline-color: #ffffff;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="button" class="btn" id="">Search</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <form action="" class="headerForm" id="headerForm" style="float: right;">
                 <h1>Login</h1>
                 <label for="userName"><b>User Name</b></label>
                 <input type="text" id="logonID" placeholder="Enter User Name" name="userName" required>

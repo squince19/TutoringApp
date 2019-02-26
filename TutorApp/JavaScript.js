@@ -1,4 +1,20 @@
-﻿function LogOn(userName, userPassword) {
+﻿var login;
+
+function displayButton() {
+    if (login == true) {
+        document.getElementById('searchTable').style.display = "block";
+        document.getElementById('headerForm').style.visibility = "hidden";
+        //document.getElementById('searchButton').style.display = "block";
+    }
+    else
+        document.getElementById('searchTable').style.display = "none";
+        document.getElementById('headerForm').style.display = "block";
+        //document.getElementById('searchButton').style.visibility = "hidden";
+
+}
+
+
+function LogOn(userName, userPassword) {
     //the url of the webservice we will be talking to
     var webMethod = "WebService.asmx/LogOn";
     //the parameters we will pass the service (in json format because curly braces)
@@ -25,9 +41,10 @@
 
         success: function (msg) {
             if (msg.d) {
-                alert("Login Successful")
-                window.location.href = 'PersonalizeProfile.html';
-
+                //alert("Login Successful")
+                //window.location.href = 'PersonalizeProfile.html';
+                login = true;
+                displayButton();
             }
             else {
                 alert("Login Failed. Wrong username or password")
@@ -39,7 +56,6 @@
     });
 }
 
-//*************HAVING TROUBLE HERE, WHAT TO PUT IN SUCCESS FUNCTION?
 function onProfileLoad() {
     var webMethod = "WebService.asmx/GetUserInfo";
     $.ajax({
@@ -48,23 +64,13 @@ function onProfileLoad() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (msg) {
-            alert(msg);
-            document.getElementById("nameOutput").innerHTML = fullName;
-            var emailInput;
-            emailInput = document.getElementById("emailOutput").value;
-            document.getElementById("emailOutput").innerHTML = nameInput;
-            var courseInput;
-            courseInput = document.getElementById("courseOutput").value;
-            document.getElementById("courseOutput").innerHTML = nameInput;
-
-
-        
-            if (msg.d) {
-                alert("Login Successful")
-            }
-            else {
-                alert("Login Failed. Wrong username or password")
-            }
+            //alert(msg);
+            login = true;
+            document.getElementById("nameOutput").innerHTML = msg.d.firstName + " "+msg.d.lastName;
+            document.getElementById("emailOutput").innerHTML = msg.d.email;
+            document.getElementById("phoneNumberoutput").innerHTML = msg.d.phoneNumber;
+            //displayButton();
+ 
         },
         error: function (e) {
             alert("boo...");

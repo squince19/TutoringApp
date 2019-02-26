@@ -83,7 +83,7 @@ namespace TutorApp
                 //if we found an account, store the id and admin status in the session
                 //so we can check those values later on other method calls to see if they 
                 //are 1) logged in at all, and 2) and admin or not
-                
+
                 Session["id"] = sqlDt.Rows[0]["userID"];
                 Session["userName"] = sqlDt.Rows[0]["userName"];
                 Session["userPassword"] = sqlDt.Rows[0]["userPassword"];
@@ -102,52 +102,16 @@ namespace TutorApp
         [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
         public Account GetUserInfo()
         {
-            int uid = Convert.ToInt32(Session["id"]);
-            //load account information into page based off of the info from the session ID
-            Account thisAccount = new Account();
-            int i = Convert.ToInt32(Session["id"]);
-            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
-            string sqlSelect = "SELECT userID, firstName, lastName, phoneNumber, userEmail, userType FROM users WHERE userID=@idValue";
+            Account tmpAccount = new Account();
 
-            //set up our connection object to be ready to use our connection string
-            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
-            //set up our command object to use our connection, and our query
-            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+            tmpAccount.firstName = Session["firstName"].ToString();
+            tmpAccount.id = Convert.ToInt32(Session["id"]);
+            tmpAccount.lastName = (string)Session["lastName"];
+            tmpAccount.email = (string)Session["userEmail"];
+            tmpAccount.userType = (string)Session["userType"];
+            tmpAccount.phoneNumber = (string)Session["phoneNumber"];
 
-            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(uid.ToString()));
-            //sqlCommand.Parameters.AddWithValue("@passValue", HttpUtility.UrlDecode(userPassword));
-
-            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
-            //here's the table we want to fill with the results from our query
-            DataTable sqlDt = new DataTable();
-            //here we go filling it!
-            sqlDa.Fill(sqlDt);
-
-           // if (sqlDt.Rows[0] != null)
-            //{
-                Account tempAccount;
-
-            string firstname = Session["firstName"].ToString();
-            int userID = Convert.ToInt32(Session["userID"]);
-            string lastname = (string)Session["lastName"];
-            string userEmail = (string)Session["userEmail"];
-            string userType = (string)Session["userType"];
-            string phoneNo = (string)Session["phoneNumber"];
-
-            
-                //int userID = i;
-                //string lastname = (string)sqlDt.Rows[0]["lastName"];
-                //string userEmail = (string)sqlDt.Rows[0]["userEmail"];
-                //string userType = (string)sqlDt.Rows[0]["userType"];
-                //string phoneNo = (string)sqlDt.Rows[0]["phoneNumber"];
-
-                tempAccount = new Account(userID, firstname, lastname, userEmail, phoneNo, userType);
-                thisAccount = tempAccount;
-                //dlist = thisAccount.lastName + thisAccount.phoneNumber;
-              //   }
-            //return dlist;
-            return thisAccount;
-            
+            return tmpAccount;
         }
 
         [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
@@ -174,13 +138,12 @@ namespace TutorApp
             foreach (DataRow row in dataTable.Rows)
             {
                 int idValue = Convert.ToInt32(row["userID"]);
-                Account tempAcc = new Account(
-                    idValue,
-                    row["firstName"].ToString(),
-                    row["lastName"].ToString(),
-                    row["phoneNumber"].ToString(),
-                    row["userEmail"].ToString()
-                    );
+                Account tempAcc = new Account();
+                tempAcc.id = Convert.ToInt32(row["userID"]);
+                tempAcc.firstName = row["firstName"].ToString();
+                tempAcc.lastName = row["lastName"].ToString();
+                tempAcc.phoneNumber = row["phoneNumber"].ToString();
+                tempAcc.email = row["userEmail"].ToString();
 
                 tempList.Add(tempAcc);
             }
@@ -212,11 +175,11 @@ namespace TutorApp
             return relAccount;
         }//END WEB METHOD
 
-        [WebMethod(EnableSession = true)] 
-        public void AddUser(string userType, string fname, string lname, string phoneNumber, 
+        [WebMethod(EnableSession = true)]
+        public void AddUser(string userType, string fname, string lname, string phoneNumber,
             string userName, string email, string password)
         {
-            Account newAcc = new Account(fname, lname, phoneNumber, email, userType);
+            Account newAcc = new Account();
 
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
             string sqlInsert = "insert into users ( userName, userPassword, userEmail, userType," +
