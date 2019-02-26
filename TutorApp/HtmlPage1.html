@@ -15,10 +15,16 @@
             <div id="postLogin">
                 <div class="headerNav">
                     <button class="headerBtn">My Profile</button>
-                    <button class="signoutBtn" onclick="document.getElementById('loginForm').style.display='block'">Sign Out</button>
+                    <button class="signoutBtn" onclick="signout()">Sign Out</button>
+                </div>
+
+                <div class="searchContainer" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <input type="text" placeholder="Search a Topic..." id="searchBar" name="search" style="width: 500px;">
+                    <button type="submit" class="searchBtn"><span>Tutor Up! </span></button>
                 </div>
             </div>
-            <div class="tableHeader" style="background-color: transparent;">
+            
+            <!--<div class="tableHeader" style="background-color: transparent;">
                 <table id="searchTable" class="tableDiv" style="float: none; display: none; background-color: transparent">
                     <tr style="background-color: transparent;">
                         <td style="background-color: transparent;">
@@ -32,18 +38,23 @@
                         </td>
                     </tr>
                 </table>
-            </div>
+            </div>-->
+            
             <form action="" class="headerForm" id="headerForm" style="float: right;">
-                <h1>Login</h1>
-                <label for="userName"><b>User Name</b></label>
-                <input type="text" id="logonID" placeholder="Enter User Name" name="userName" required>
+                <div class="logo">
+                    <img src="images/Logo.png" style="max-height: 125px">
+                </div>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" id="logonPassword" placeholder="Enter Password" name="psw" required>
+                <div class="container">
+                    <label for="userName"><b>User Name</b></label>
+                    <input type="text" id="logonID" placeholder="Enter User Name" name="userName" required>
 
-                <button type="button" class="btn" onclick="LogOn($('#logonID').val(), $('#logonPassword').val()); return false;">Login</button>
-                <button type="button" class="btn" onclick="document.getElementById('createAccount').style.display='block'">Create Account</button>
-                
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" id="logonPassword" placeholder="Enter Password" name="psw" required>
+
+                    <button type="button" class="btn" onclick="LogOn($('#logonID').val(), $('#logonPassword').val()); return false;">Login</button>
+                    <button type="button" class="btn" onclick="document.getElementById('createAccount').style.display='block'">Create Account</button>
+                </div>
             </form>
         </div>
     </header>
@@ -75,9 +86,9 @@
             <div class="container">
                 <h1>Create Account</h1>
 
-                <div class="checkbox" style="display: inline-block;">
-                    <input type="checkbox" name="userType" value="student"><b>Student</b>
-                    <input type="checkbox" name="userType" value="tutor"><b>Tutor</b>
+                <div class="radioSelect" style="display: inline-block;">
+                    <input type="radio" name="userType" onchange="displayField()" value="student"><b>Student</b>
+                    <input type="radio" name="userType" onchange="displayField()" id="radioTutor" value="tutor"><b>Tutor</b>
                 </div>
 
                 <br>
@@ -104,6 +115,11 @@
                 <label for="psw-repeat"><b>Retype Password</b></label>
                 <input type="password" placeholder="Retype Password" name="psw-repeat" required>
 
+                <div id="courseSpecialty" style="display: none;">
+                    <label for="courseSpecialty"><b>Course Specialty</b></label>
+                    <input type="text" placeholder="Enter Specialty" name="courseSpecialty" required />
+                </div>
+
                 <div class="clearfix">
                     <button type="submit" onclick="createAccount('student', $('#firstNameinput').val(), $('#lastNameinput').val(),
         $('#phoneInput').val(), $('#userNameinput').val(), $('#emailInput').val(), $('#passwordInput').val()); return false;" class="btn">Sign Up</button>
@@ -116,6 +132,20 @@
     <script src="JavaScript.js"></script>
 
     <script>
+        function signout() {
+            document.getElementById('postLogin').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        }
+
+        function displayField() {
+            if (document.getElementById('radioTutor').checked) {
+                document.getElementById('courseSpecialty').style.display = 'block';
+            }
+            else {
+                document.getElementById('courseSpecialty').style.display = 'none';
+            }
+        }
+
         function openPage(pageName, elmnt, color) {
             // Hide all elements with class="tabcontent" by default */
             var i, tabcontent, tablinks;
