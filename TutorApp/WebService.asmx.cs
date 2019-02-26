@@ -110,6 +110,7 @@ namespace TutorApp
             tmpAccount.email = (string)Session["userEmail"];
             tmpAccount.userType = (string)Session["userType"];
             tmpAccount.phoneNumber = (string)Session["phoneNumber"];
+            tmpAccount.courseProf = (string)Session["courseProf"];
 
             return tmpAccount;
         }

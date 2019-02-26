@@ -60,9 +60,23 @@ function searchTutors(courseProf) {
         dataType: "json",
         success: function (msg) {
             alert("working!")
-            var tempArray;
             tutorArray = msg.d;
             alert(tutorArray[0].firstName);
+            sessionStorage.setItem('fn1', tutorArray[0].firstName);
+            sessionStorage.setItem('ln1', tutorArray[0].lastName);
+            sessionStorage.setItem('e1', tutorArray[0].email);
+            sessionStorage.setItem('c1', tutorArray[0].courseProf);
+
+            sessionStorage.setItem('fn2', tutorArray[1].firstName);
+            sessionStorage.setItem('ln2', tutorArray[1].lastName);
+            sessionStorage.setItem('e2', tutorArray[1].email);
+            sessionStorage.setItem('c2', tutorArray[1].courseProf);
+
+            sessionStorage.setItem('fn3', tutorArray[2].firstName);
+            sessionStorage.setItem('ln3', tutorArray[2].lastName);
+            sessionStorage.setItem('e3', tutorArray[2].email);
+            sessionStorage.setItem('c3', tutorArray[2].courseProf);
+
 
             window.location.href = 'searchResults.html';
         },
@@ -74,20 +88,21 @@ function searchTutors(courseProf) {
 
 function populateResults() {
 
-    document.getElementById("firstname1").innerHTML = tutorArray[0].firstName;
-    document.getElementById('lastname1').innerHTML = tutorArray[0].lastName;
-    document.getElementById('email1').innerHTML = tutorArray[0].email;
-    document.getElementById('course1').innerHTML = tutorArray[0].courseProf;
+    document.getElementById("firstname1").innerHTML = sessionStorage.getItem('fn1');
+    document.getElementById('lastname1').innerHTML = sessionStorage.getItem('ln1');
+    document.getElementById('email1').innerHTML = sessionStorage.getItem('e1');
+    document.getElementById('course1').innerHTML = sessionStorage.getItem('c1');
 
-            //document.getElementById("firstname2").innerHTML = msg.d.email;
-            //document.getElementById("lastname2").innerHTML = msg.d.email;
-            //document.getElementById("email2").innerHTML = msg.d.email;
-            //document.getElementById("course2").innerHTML = msg.d.email;
+    document.getElementById("firstname2").innerHTML = sessionStorage.getItem('fn2');
+    document.getElementById("lastname2").innerHTML = sessionStorage.getItem('ln2');
+    document.getElementById("email2").innerHTML = sessionStorage.getItem('e2');
+    document.getElementById("course2").innerHTML = sessionStorage.getItem('c2');
 
-            //document.getElementById("firstname3").innerHTML = msg.d.email;
-            //document.getElementById("lastname3").innerHTML = msg.d.email;
-            //document.getElementById("email3").innerHTML = msg.d.email;
-            //document.getElementById("course3").innerHTML = msg.d.email;
+
+    document.getElementById("firstname3").innerHTML = sessionStorage.getItem('fn3');
+    document.getElementById("lastname3").innerHTML = sessionStorage.getItem('ln3');
+    document.getElementById("email3").innerHTML = sessionStorage.getItem('e3');
+    document.getElementById("course3").innerHTML = sessionStorage.getItem('c3');
 }
 
 
