@@ -15,7 +15,7 @@
             <div id="postLogin">
                 <div id="headerNavView" class="headerNav">
                     <button onclick="window.location.href = 'PersonalizeProfile.html'" class="headerBtn">My Profile</button>
-                    <button class="signoutBtn" onclick="signout()">Sign Out</button>
+                    <button class="signoutBtn" onclick="signOut()">Sign Out</button>
                 </div>
 
                 <div class="searchContainer" id="searchTable"style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
@@ -116,11 +116,7 @@
     <script src="JavaScript.js"></script>
 
     <script>
-        function signout() {
-            document.getElementById('postLogin').style.display = 'none';
-            document.getElementById('loginForm').style.display = 'block';
-        }
-
+        
         function displayField() {
             if (document.getElementById('radioTutor').checked) {
                 document.getElementById('courseSpecialty').style.display = 'block';

@@ -125,7 +125,7 @@ namespace TutorApp
             relAccount = new List<Account>();
 
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["tutorDB"].ConnectionString;
-            string sqlSelect = "SELECT userID, firstName, lastName, phoneNumber, userEmail FROM users WHERE userType='tutor' and courseProf=@courseValue"; //finish this with course type;
+            string sqlSelect = "SELECT userID, firstName, lastName, phoneNumber, userEmail, courseProf FROM users WHERE userType='tutor' and courseProf=@courseValue"; //finish this with course type;
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
 
@@ -145,33 +145,41 @@ namespace TutorApp
                 tempAcc.lastName = row["lastName"].ToString();
                 tempAcc.phoneNumber = row["phoneNumber"].ToString();
                 tempAcc.email = row["userEmail"].ToString();
+                tempAcc.courseProf = row["courseProf"].ToString();
 
                 tempList.Add(tempAcc);
             }
 
             int i = tempList.Count;
             int[] tempArray = new int[3];
-            Random r = new Random();
 
-            //do loop generates random numbers, and also checks to make sure that they are not already in the array
-            //It will generate numbers until the array is full of unique numbers
-            do
+            if(i>3)
             {
-                for (int x = 0; x < 3; x++)
+                Random r = new Random();
+
+                //do loop generates random numbers, and also checks to make sure that they are not already in the array
+                //It will generate numbers until the array is full of unique numbers
+                do
                 {
-                    tempArray[x] = r.Next(1, i);
-                }
-            } while (tempArray[0] == tempArray[1] || tempArray[1] == tempArray[2] || tempArray[2] == tempArray[0]);
+                    for (int x = 0; x < 3; x++)
+                    {
+                        tempArray[x] = r.Next(1, i);
+                    }
+                } while (tempArray[0] == tempArray[1] || tempArray[1] == tempArray[2] || tempArray[2] == tempArray[0]);
+
+                int one, two, three;
+                one = tempArray[0];
+                two = tempArray[1];
+                three = tempArray[2];
+
+                relAccount.Add(tempList[one]);
+                relAccount.Add(tempList[two]);
+                relAccount.Add(tempList[three]);
+                
+            }
 
 
-            int one, two, three;
-            one = tempArray[0];
-            two = tempArray[1];
-            three = tempArray[2];
 
-            relAccount.Add(tempList[one]);
-            relAccount.Add(tempList[two]);
-            relAccount.Add(tempList[three]);
 
             return relAccount;
         }//END WEB METHOD

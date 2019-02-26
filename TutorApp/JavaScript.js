@@ -59,9 +59,9 @@ function searchTutors(courseProf) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (msg) {
-            alert("working!")
+            //alert("working!")
             tutorArray = msg.d;
-            alert(tutorArray[0].firstName);
+            //alert(tutorArray[0].firstName);
             sessionStorage.setItem('fn1', tutorArray[0].firstName);
             sessionStorage.setItem('ln1', tutorArray[0].lastName);
             sessionStorage.setItem('e1', tutorArray[0].email);
@@ -120,8 +120,7 @@ function onProfileLoad() {
             document.getElementById("nameOutput").innerHTML = msg.d.firstName + " "+msg.d.lastName;
             document.getElementById("emailOutput").innerHTML = msg.d.email;
             document.getElementById("phoneNumberoutput").innerHTML = msg.d.phoneNumber;
-            //displayButton();
- 
+            document.getElementById("courseOutput").innerHTML = msg.d.courseProf;
         },
         error: function (e) {
             alert("boo...");
@@ -148,4 +147,10 @@ function createAccount(userType, fname, lname, phoneNumber, userName, email, pas
             alert("sad");
         }
     });
+}
+
+function signOut() {
+    sessionStorage.setItem('logon', 'false');
+    window.location.href = 'HtmlPage1.html';
+
 }
